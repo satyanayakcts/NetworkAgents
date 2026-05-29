@@ -3,7 +3,7 @@ import api from '@/services/api'
 
 export default function useSummary() {
   return useQuery('summary', async () => {
-    const res = await api.get('/api/summary')
+    const res = await api.get('/api/v1/eol/summary')
     return res.data
   }, { refetchInterval: 1000 * 60 * 10 })
 }

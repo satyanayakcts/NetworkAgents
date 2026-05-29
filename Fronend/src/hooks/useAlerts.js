@@ -6,8 +6,9 @@ export default function useAlerts(params = {}) {
   return useQuery(['alerts', params], () => fetchAlerts(params), {
     initialData: [],
     select: (data) => {
+      // API returns {total, alerts: [...]}
       if (Array.isArray(data)) return data
-      if (data && Array.isArray(data.items)) return data.items
+      if (data && Array.isArray(data.alerts)) return data.alerts
       return []
     }
   })

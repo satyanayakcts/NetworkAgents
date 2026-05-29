@@ -2,11 +2,22 @@ import React from 'react'
 import useAlerts from '@/hooks/useAlerts'
 import AlertList from '@/components/alerts/AlertList'
 import useSocket from '@/hooks/useSocket'
+import { ackAlert } from '@/services/alertService'
 
 export default function Alerts() {
   useSocket()
   const { data, isError, error, isLoading } = useAlerts()
   const alerts = Array.isArray(data) ? data : []
+
+  const handleAck = async (id) => {
+    try {
+      await ackAlert(id)
+      // Refetch alerts after ack
+      window.location.reload() // or use query invalidation
+    } catch (err) {
+      console.error('Failed to acknowledge alert:', err)
+    }
+  }
 
   if (isError) {
     return (
@@ -26,7 +37,7 @@ export default function Alerts() {
         </div>
         <button className="rounded-full px-4 py-2 bg-slate-900 text-white hover:bg-slate-800 transition">Refresh</button>
       </div>
-      <AlertList alerts={alerts} onAck={(id) => console.log('ack', id)} loading={isLoading} />
+      <AlertList alerts={alerts} onAck={handleAck} loading={isLoading} />
     </div>
   )
 }
