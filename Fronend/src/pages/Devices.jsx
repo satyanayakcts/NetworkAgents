@@ -4,13 +4,12 @@ import DeviceTable from '@/components/devices/DeviceTable'
 import DeviceBulkActions from '@/components/devices/DeviceBulkActions'
 import useDevices from '@/hooks/useDevices'
 import useFilterStore from '@/store/filterStore'
-import { DUMMY_DEVICES } from '@/constants'
 
 export default function Devices() {
   const filters = useFilterStore()
   const [selected, setSelected] = useState([])
   const { data, isLoading } = useDevices({ page: filters.page })
-  const devices = data?.items || DUMMY_DEVICES
+  const devices = data?.items || []
 
   return (
     <div className="space-y-6">

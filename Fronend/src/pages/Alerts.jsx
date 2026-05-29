@@ -2,12 +2,11 @@ import React from 'react'
 import useAlerts from '@/hooks/useAlerts'
 import AlertList from '@/components/alerts/AlertList'
 import useSocket from '@/hooks/useSocket'
-import { DUMMY_ALERTS } from '@/constants'
 
 export default function Alerts() {
   useSocket()
   const { data, isError, error, isLoading } = useAlerts()
-  const alerts = Array.isArray(data) ? data : DUMMY_ALERTS
+  const alerts = Array.isArray(data) ? data : []
 
   if (isError) {
     return (

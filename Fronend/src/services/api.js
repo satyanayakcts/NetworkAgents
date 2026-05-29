@@ -4,7 +4,7 @@ import axios from 'axios'
  * Create configured axios instance with JWT interceptor and retry logic
  */
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
   headers: { 'Content-Type': 'application/json' },
   timeout: 15000
 })

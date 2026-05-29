@@ -4,15 +4,15 @@ import SummaryCards from '@/components/dashboard/SummaryCards'
 import TimelineChart from '@/components/dashboard/TimelineChart'
 import AlertsSidebar from '@/components/dashboard/AlertsSidebar'
 import CriticalDevices from '@/components/dashboard/CriticalDevices'
-import { DUMMY_SUMMARY, DUMMY_TIMELINE, DUMMY_ALERTS, DUMMY_DEVICES } from '@/constants'
+import { STRINGS } from '@/constants'
 
 export default function Dashboard() {
   const { data } = useSummary()
 
-  const stats = data?.stats || DUMMY_SUMMARY
-  const timeline = data?.timeline || DUMMY_TIMELINE
-  const alerts = data?.recent_alerts || DUMMY_ALERTS
-  const devices = data?.devices || DUMMY_DEVICES
+  const stats = data?.stats || {}
+  const timeline = data?.timeline || []
+  const alerts = data?.recent_alerts || []
+  const devices = data?.devices || []
 
   return (
     <div className="space-y-8">
